@@ -12,8 +12,8 @@ void task1() {
 }
 
 void task2() {
-	pthread_mutex_lock(&l2);
 	pthread_mutex_lock(&l1);
+	pthread_mutex_lock(&l2);
 	v++;
 	pthread_mutex_unlock(&l1);
 	pthread_mutex_unlock(&l2);

@@ -15,7 +15,7 @@ void increase() {
 		}
 		
 		int looped = state == 0;
-		if (looped && counter <= 0) goto ERROR;  // A (state == 0 -> counter > 0)
+		if (looped && counter <= 0) goto ERROR;  // A (looped -> counter > 0)
 		__VERIFIER_atomic_end();
 	}
 	ERROR:

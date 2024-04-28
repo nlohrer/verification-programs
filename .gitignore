@@ -5,3 +5,5 @@ example_bug.c
 predmap.txt
 predmap.txt.license
 starexec_run_predicateAnalysis.sh
+rosetta.c
+spec_test*
