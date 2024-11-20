@@ -1,5 +1,7 @@
 extern unsigned __VERIFIER_nondet_int();
 extern void abort(void);
+#include <assert.h>
+void reach_error() { assert(0); }
 void __VERIFIER_assume(int cond) {
     if (!cond)
         abort();
@@ -42,25 +44,23 @@ int main() {
                 case 1: __t2_active = 1; pc[0] = 2; continue;
                 case 2: if (__t1_active) { __t0_joins_t1 = 1; } else { __t0_joins_t1 = 0; pc[0] = 3; } continue;
                 case 3: if (__t2_active) { __t0_joins_t2 = 1; } else { __t0_joins_t2 = 0; pc[0] = 4; } continue;
-                case 4: if (x < 2) goto ERROR; pc[0] = 5; continue;
+                case 4: if (x < 2) reach_error(); pc[0] = 5; continue;
                 case 5: __t0_active = 0; pc[0] = -1; continue;
-                default: goto ERROR;
+                default: reach_error();
             }
         } else if (next_thread == 1) {
             switch (pc[1]) {
                 case 0: x = 0; pc[1] = 1; continue;
                 case 1: x = x + 1; pc[1] = -1; __t1_active = 0; continue;
-                default: goto ERROR;
+                default: reach_error();
             }
         } else if (next_thread == 2) {
             switch (pc[2]) {
                 case 0: x = x + 1; pc[2] = 1; continue;
                 case 1: x = x + 1; pc[2] = -1; __t2_active = 0; continue;
-                default: goto ERROR;
+                default: reach_error();
             }
         }
     }
-    goto ERROR;
     return 0;
-    ERROR: return -1;
 }

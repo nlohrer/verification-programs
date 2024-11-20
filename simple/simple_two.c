@@ -1,6 +1,8 @@
 #include <pthread.h>
 int x = 0;
-extern void __assert_fail(const char *__assertion, const char *__file, unsigned int __line, const char *__function);
+extern void abort(void);
+#include <assert.h>
+void reach_error() { assert(0); }
 
 void *task1(void *arg) {
     x = 0;
@@ -21,7 +23,7 @@ int main() {
     pthread_join(id1, (void *) 0);
     pthread_join(id2, (void *) 0);
 
-    if (x < 2) {__assert_fail("0", "simple_two.c", 24, __extension__ __PRETTY_FUNCTION__);} // error should be reachable
+    if (x < 2) { reach_error(); } // error should be reachable
 
     return 0;
 }
